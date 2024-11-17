@@ -7,7 +7,7 @@ public:
     std::unordered_map<int, int> map;
     long long maximumSubarraySum(std::vector<int>& nums, int k) {
         int i=0, j=k-1;
-        int sum = 0, calc=0;
+        long long sum = 0, calc=0;
         for(int it = i; it<=j; it++){
             map[nums[it]]++;
             calc += nums[it];
