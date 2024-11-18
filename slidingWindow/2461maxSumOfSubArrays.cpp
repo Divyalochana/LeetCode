@@ -12,7 +12,6 @@ public:
             map[nums[it]]++;
             calc += nums[it];
         }
-        std::cout << "calc: " << calc << std::endl;
         if(map.size() == k){
             sum = std::max(calc, sum);
         }
@@ -22,7 +21,6 @@ public:
             map[nums[i]]--;
             map[nums[j]]++;
             calc = (calc-nums[i])+nums[j];
-            std::cout << calc << std::endl;
             if(map[nums[i]] == 0){
                 map.erase(nums[i]);
             }
@@ -39,6 +37,5 @@ int main(){
     std::vector<int> nums = {1,5,4,2,9,9,1};
     Solution s;
     int sum = s.maximumSubarraySum(nums, 3);
-
-    std::cout << "sum: " << sum;
+    std::cout << "MaxSum: " << sum << std::endl;
 }
