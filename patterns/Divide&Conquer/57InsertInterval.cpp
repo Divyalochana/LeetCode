@@ -5,21 +5,10 @@
 class Solution {
 public:
     std::vector<std::vector<int>> insert(std::vector<std::vector<int>>& intervals, std::vector<int>& newInterval) {
-
         int i=0;
-        std::cout << "i: " << i << std::endl;
         while(i<intervals.size() && (intervals[i][0] < newInterval[0])){i++;}
-        std::cout << "i: " << i << std::endl;
         intervals.insert(intervals.begin()+i, newInterval);
-        for(const auto& row:intervals){
-            for(const auto &j: row){
-                std::cout << j << " ";
-            }
-            std::cout << std::endl;
-        }
-        std::cout << "-------" << std::endl;
         std::vector<std::vector<int>>res;
-        
         for(const auto& ele: intervals){
             if(res.empty() || res.back()[1] < ele[0]){
                 res.push_back(ele);

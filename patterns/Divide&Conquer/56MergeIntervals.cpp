@@ -30,7 +30,6 @@ public:
 class Solution {
 public:
     std::vector<std::vector<int>> merge(std::vector<std::vector<int>>& intervals) {
-        int i=0, j=1;
         int n = intervals.size();
         if(n==1){
             return intervals;
