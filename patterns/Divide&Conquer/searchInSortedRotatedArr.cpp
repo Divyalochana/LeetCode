@@ -10,13 +10,39 @@ You must write an algorithm with O(log n) runtime complexity.
 #include <iostream>
 #include <vector>
 
-int main(){
-    std::vector<int> nums = {0,1,2,4,5,6,7};
-    for(int i=0; i<nums.size(); i++){
-        std::cout << "i: " << i%nums.size() <<std::endl;
-        if(nums[i] == 6){
-            std::cout << "found: " << i;
-            break;
+class Solution {
+public:
+    int search(std::vector<int>& nums, int target) {
+        int low = 0, high = nums.size()-1, mid=0;
+        while(low <= high){
+            mid = (low+high)/2;
+            if(nums[mid] == target){
+                return mid;
+            }
+
+            if(nums[low] <= nums[mid]){
+                if(target >= nums[low] && target < nums[mid]){
+                    high = mid-1;
+                }else{
+                    low=mid+1;
+                }
+            }else{
+                if(target > nums[mid] && target <= nums[high]){
+                    low = mid+1;
+                }else{
+                    high = mid-1;
+                }
+            }
         }
+        return -1;
     }
+};
+
+int main(){
+    std::vector<int> nums = {1};
+    Solution s;
+    int ind = s.search(nums, 0);
+
+    std::cout << "ind: " << ind;
+    
 }
