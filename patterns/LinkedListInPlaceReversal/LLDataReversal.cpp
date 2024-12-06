@@ -28,39 +28,27 @@ void insert (struct node *n) {
     }
 }
 
-node* reverseLinks(node *curr, int cnt, int right){
-    node *head, *prev, *p;
-    head = p = curr;
-    prev=NULL;
-
-    while(cnt <= right && curr!=nullptr){
-        curr = curr->next;
-        p->next = prev;
-        prev = p;
-        p = curr;
-        cnt++;
-    }
-
-    if(curr != nullptr){head->next = curr;}
-    return prev;
-}
-
 void reverse2(struct node *n, int left, int right){
-    int cnt =1;
     node *curr = n;
-    while(cnt<left-1){
+    int cnt = 1;
+    std::stack<int> st;
+    while(curr != nullptr){
+        if((cnt >= left) && (cnt <= right)){
+            st.push(curr->data);
+        }
         curr = curr->next;
         cnt++;
-    } 
-    node *start = curr;
-    std::cout << "startNode: " << curr->next->data << std::endl;
-    std::cout << "cnt: " << cnt << std::endl;
-    if(left == 1){
-        first = reverseLinks(curr, cnt, right);
-    }else{
-        start->next = reverseLinks(curr->next, cnt+1, right);
     }
-    
+    curr = n;
+    cnt=1;
+    while(curr != nullptr){
+        if((cnt >= left) && (cnt <= right)){
+            curr->data = st.top();
+            st.pop();
+        }
+        curr = curr->next;
+        cnt++;
+    }
 }
 
 int main(){
@@ -76,7 +64,7 @@ int main(){
     display(first);
 
 std::cout << std::endl << "----------------" << std::endl;
-    reverse2(first, 1, 1);
+    reverse2(first, 1, 5);
     display(first);
 
     return 0;
